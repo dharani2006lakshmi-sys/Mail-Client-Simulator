@@ -1,5 +1,5 @@
-/**
- * mail.js — Email operations for MiniMail inbox
+﻿/**
+ * mail.js â€” Email operations for MiniMail inbox
  */
 
 let currentFolder = 'inbox';
@@ -11,7 +11,7 @@ function initMail() {
   if (!currentUser) return;
 
   // Show user info
-  document.getElementById('userChip').textContent = currentUser.email;
+  const avatar = document.getElementById('avatar-letter'); if(avatar) avatar.textContent = currentUser.email.charAt(0).toUpperCase();
 
   renderEmails();
   updateBadge();
@@ -50,7 +50,7 @@ function renderEmails() {
   if (!emails.length) {
     list.innerHTML = `
       <div class="empty-state">
-        <span class="empty-icon">📭</span>
+        <span class="empty-icon">ðŸ“­</span>
         <p>${query ? 'No results found.' : 'Nothing here yet.'}</p>
       </div>`;
     return;
@@ -89,7 +89,7 @@ function emailRow(e) {
       <div class="email-meta">
         <span class="email-time">${e.dateFormatted}</span>
         <span class="star-icon ${starred}"
-              onclick="event.stopPropagation(); starEmail('${e.id}')">⭐</span>
+              onclick="event.stopPropagation(); starEmail('${e.id}')">â­</span>
       </div>
     </div>`;
 }
@@ -115,7 +115,7 @@ function openEmail(id) {
       <div class="detail-avatar">${initial}</div>
       <div class="detail-sender-info">
         <strong>${esc(e.fromName || e.fromEmail)}</strong>
-        <small>${esc(e.fromEmail)} → ${esc(e.toEmail)}</small>
+        <small>${esc(e.fromEmail)} â†’ ${esc(e.toEmail)}</small>
         <small>${new Date(e.date).toLocaleString()}</small>
       </div>
     </div>
@@ -233,3 +233,4 @@ function esc(str) {
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
+

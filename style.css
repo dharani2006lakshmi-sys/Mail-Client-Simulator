@@ -59,7 +59,7 @@ button { cursor: pointer; border: none; font-family: inherit; }
    AUTH PAGE
    =========================== */
 
-.auth-page {
+.auth-page { display: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -167,7 +167,7 @@ button { cursor: pointer; border: none; font-family: inherit; }
    APP LAYOUT
    =========================== */
 
-.app-page {
+.app-page { display: none;
   display: grid;
   grid-template-columns: 220px 1fr;
   grid-template-rows: 100vh;
@@ -571,7 +571,7 @@ button { cursor: pointer; border: none; font-family: inherit; }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-  .app-page {
+  .app-page { display: none;
     grid-template-columns: 1fr;
   }
   .sidebar {
@@ -586,4 +586,8 @@ button { cursor: pointer; border: none; font-family: inherit; }
 /* Added Page Toggling */
 .page { display: none; }
 .page.active { display: block; }
+
+
+.auth-page.active { display: flex !important; }
+.app-page.active { display: grid !important; }
 

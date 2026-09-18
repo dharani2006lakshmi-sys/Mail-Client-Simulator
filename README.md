@@ -1,18 +1,8 @@
-﻿<div align="center">
+<div align="center">
 
 # ✉️ MiniMail
 
-![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
-
-A lightweight, purely client-side email client simulation that provides an incredibly fast and fluid inbox experience entirely in the browser using LocalStorage.
-
-</div>
-
----
-
-![MiniMail Live Demo](https://raw.githubusercontent.com/dharani2006lakshmi-sys/mini-gmail/main/screenshot.png)
+![MiniMail Live Demo](https://raw.githubusercontent.com/dharani2006lakshmi-sys/Mail-Client-Simulator/main/screenshot.png)
 
 [**🔗 View Live Demo on Vercel**](https://minigmaildemo.vercel.app/)
 
@@ -39,8 +29,7 @@ A lightweight, purely client-side email client simulation that provides an incre
 
 `	ext
 mini-gmail/
-├── index.html        # Authentication page (Login/Register)
-├── inbox.html        # Main dashboard and email interface
+├── index.html        # Authentication page & Inbox UI
 ├── style.css         # Global styles and UI components
 ├── storage.js        # LocalStorage database wrapper
 ├── auth.js           # Authentication and session logic
@@ -56,8 +45,8 @@ Because MiniMail is fully client-side, you don't need any complex build tools or
 
 1. **Clone the repository:**
    `ash
-   git clone https://github.com/dharani2006lakshmi-sys/mini-gmail.git
-   cd mini-gmail
+   git clone https://github.com/dharani2006lakshmi-sys/Mail-Client-Simulator.git
+   cd Mail-Client-Simulator
    `
 
 2. **Run Locally:**
@@ -69,4 +58,4 @@ Because MiniMail is fully client-side, you don't need any complex build tools or
 ## 📜 License
 
 MIT License - Free to use, modify, and learn from!
-
+</div>

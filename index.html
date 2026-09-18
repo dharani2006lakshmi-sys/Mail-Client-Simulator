@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MiniMail – Your Lightweight Inbox</title>
+  <title>MiniMail â€“ Your Lightweight Inbox</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
@@ -11,7 +11,7 @@
 <body>
 
 <!-- ===== LOGIN PAGE ===== -->
-<div id="login-page" class="page active">
+<div id="login-page" class="auth-page active">
   <div class="login-bg">
     <div class="login-blob b1"></div>
     <div class="login-blob b2"></div>
@@ -19,7 +19,7 @@
   </div>
   <div class="login-card">
     <div class="brand">
-      <span class="brand-icon">✉</span>
+      <span class="brand-icon">âœ‰</span>
       <h1>MiniMail</h1>
     </div>
     <p class="login-sub">Sign in to your inbox</p>
@@ -29,7 +29,7 @@
     </div>
     <div class="form-group">
       <label>Password</label>
-      <input type="password" id="login-password" placeholder="••••••••" />
+      <input type="password" id="login-password" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" />
     </div>
     <p class="login-hint">Use any email + password to sign in (demo)</p>
     <button class="btn-primary" onclick="handleLogin()">Sign In</button>
@@ -39,12 +39,12 @@
 </div>
 
 <!-- ===== MAIN APP ===== -->
-<div id="app-page" class="page">
+<div id="app-page" class="app-page">
 
   <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
-      <span class="brand-icon-sm">✉</span>
+      <span class="brand-icon-sm">âœ‰</span>
       <span class="brand-name">MiniMail</span>
       <button class="sidebar-close" onclick="toggleSidebar()"><span class="material-icons">close</span></button>
     </div>
@@ -90,7 +90,7 @@
       <button class="icon-btn" onclick="toggleSidebar()"><span class="material-icons">menu</span></button>
       <div class="search-bar">
         <span class="material-icons search-icon">search</span>
-        <input type="text" id="search-input" placeholder="Search mail…" oninput="searchMail(this.value)"/>
+        <input type="text" id="search-input" placeholder="Search mailâ€¦" oninput="searchMail(this.value)"/>
         <button class="icon-btn" onclick="clearSearch()"><span class="material-icons">close</span></button>
       </div>
       <div class="topbar-right">
@@ -112,7 +112,7 @@
         </div>
         <div class="folder-title" id="folder-title">Inbox</div>
         <div class="toolbar-right">
-          <span id="email-count" class="email-count">1–20 of 20</span>
+          <span id="email-count" class="email-count">1â€“20 of 20</span>
           <button class="icon-btn"><span class="material-icons">chevron_left</span></button>
           <button class="icon-btn"><span class="material-icons">chevron_right</span></button>
         </div>
@@ -141,7 +141,7 @@
         <div class="detail-content" id="detail-content"></div>
         <div class="reply-box">
           <h4>Reply</h4>
-          <textarea id="reply-input" placeholder="Write your reply…"></textarea>
+          <textarea id="reply-input" placeholder="Write your replyâ€¦"></textarea>
           <button class="btn-primary small" onclick="sendReply()">Send Reply</button>
         </div>
       </div>
@@ -164,7 +164,7 @@
       <input type="email" id="compose-to" placeholder="To" />
       <input type="email" id="compose-cc" placeholder="Cc" />
       <input type="text" id="compose-subject" placeholder="Subject" />
-      <textarea id="compose-body" placeholder="Compose email…"></textarea>
+      <textarea id="compose-body" placeholder="Compose emailâ€¦"></textarea>
     </div>
     <div class="compose-footer">
       <button class="btn-primary small" onclick="sendEmail()">
@@ -212,3 +212,4 @@
 <script src="app.js"></script>
 </body>
 </html>
+

@@ -591,3 +591,36 @@ button { cursor: pointer; border: none; font-family: inherit; }
 .auth-page.active { display: flex !important; }
 .app-page.active { display: grid !important; }
 
+
+/* Login Form Additions */
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+}
+.divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--border);
+}
+.divider span {
+    padding: 0 10px;
+}
+.btn-ghost {
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 12px;
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.btn-ghost:hover {
+    background: var(--surface2);
+}

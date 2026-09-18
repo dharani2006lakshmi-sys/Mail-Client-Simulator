@@ -19,7 +19,7 @@
   </div>
   <div class="auth-card">
     <div class="auth-brand">
-      <span class="brand-icon">âœ‰</span>
+      <span class="material-icons brand-icon" style="font-size: 32px; color: var(--accent);">email</span>
       <h1>MiniMail</h1>
     </div>
     <p class="auth-sub">Sign in to your inbox</p>
@@ -29,7 +29,7 @@
     </div>
     <div class="form-group">
       <label>Password</label>
-      <input type="password" id="login-password" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" />
+      <input type="password" id="login-password" placeholder="********" />
     </div>
     <p class="auth-switch">Use any email + password to sign in (demo)</p>
     <button class="btn-primary" onclick="handleLogin()">Sign In</button>
@@ -90,7 +90,7 @@
       <button class="icon-btn" onclick="toggleSidebar()"><span class="material-icons">menu</span></button>
       <div class="search-bar">
         <span class="material-icons search-icon">search</span>
-        <input type="text" id="search-input" placeholder="Search mailâ€¦" oninput="searchMail(this.value)"/>
+        <input type="text" id="search-input"  oninput="searchMail(this.value)"/>
         <button class="icon-btn" onclick="clearSearch()"><span class="material-icons">close</span></button>
       </div>
       <div class="topbar-right">
@@ -141,7 +141,7 @@
         <div class="detail-content" id="detail-content"></div>
         <div class="reply-box">
           <h4>Reply</h4>
-          <textarea id="reply-input" placeholder="Write your replyâ€¦"></textarea>
+          <textarea id="reply-input" ></textarea>
           <button class="btn-primary small" onclick="sendReply()">Send Reply</button>
         </div>
       </div>
@@ -161,10 +161,10 @@
       </div>
     </div>
     <div class="compose-body">
-      <input type="email" id="compose-to" placeholder="To" />
-      <input type="email" id="compose-cc" placeholder="Cc" />
-      <input type="text" id="compose-subject" placeholder="Subject" />
-      <textarea id="compose-body" placeholder="Compose emailâ€¦"></textarea>
+      <input type="email" id="compose-to"  />
+      <input type="email" id="compose-cc"  />
+      <input type="text" id="compose-subject"  />
+      <textarea id="compose-body" ></textarea>
     </div>
     <div class="compose-footer">
       <button class="btn-primary small" onclick="sendEmail()">

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MiniMail – Inbox</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+</head>
+<body class="app-page">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <span class="brand-icon-sm">✉</span>
+      <span>MiniMail</span>
+    </div>
+
+    <button class="compose-btn" onclick="openCompose()">
+      <span>✏</span> Compose
+    </button>
+
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" data-folder="inbox" onclick="setFolder('inbox', this)">
+        <span class="nav-icon">📥</span> Inbox
+        <span class="badge" id="inboxBadge"></span>
+      </a>
+      <a href="#" class="nav-item" data-folder="sent" onclick="setFolder('sent', this)">
+        <span class="nav-icon">📤</span> Sent
+      </a>
+      <a href="#" class="nav-item" data-folder="starred" onclick="setFolder('starred', this)">
+        <span class="nav-icon">⭐</span> Starred
+      </a>
+      <a href="#" class="nav-item" data-folder="trash" onclick="setFolder('trash', this)">
+        <span class="nav-icon">🗑</span> Trash
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-chip" id="userChip"></div>
+      <button class="logout-btn" onclick="logout()">Sign Out</button>
+    </div>
+  </aside>
+
+  <!-- Main area -->
+  <main class="main-content">
+    <header class="app-header">
+      <h2 class="folder-title" id="folderTitle">Inbox</h2>
+      <div class="search-wrap">
+        <input type="search" id="searchInput" placeholder="Search mail…" oninput="renderEmails()"/>
+      </div>
+    </header>
+
+    <!-- Email list -->
+    <section class="email-list" id="emailList"></section>
+  </main>
+
+  <!-- Email detail panel -->
+  <aside class="detail-panel hidden" id="detailPanel">
+    <div class="detail-header">
+      <button class="back-btn" onclick="closeDetail()">← Back</button>
+      <div class="detail-actions">
+        <button class="icon-btn" id="starBtn" onclick="toggleStar()" title="Star">⭐</button>
+        <button class="icon-btn" onclick="deleteEmail()" title="Delete">🗑</button>
+        <button class="icon-btn" onclick="replyEmail()" title="Reply">↩</button>
+      </div>
+    </div>
+    <div class="detail-body" id="detailBody"></div>
+  </aside>
+
+  <!-- Compose Modal -->
+  <div class="modal-overlay hidden" id="composeOverlay">
+    <div class="compose-modal">
+      <div class="compose-header">
+        <h3>New Message</h3>
+        <button class="close-btn" onclick="closeCompose()">✕</button>
+      </div>
+      <div class="compose-body">
+        <div class="compose-field">
+          <label>To</label>
+          <input type="email" id="composeTo" placeholder="recipient@example.com"/>
+        </div>
+        <div class="compose-field">
+          <label>Subject</label>
+          <input type="text" id="composeSubject" placeholder="Subject…"/>
+        </div>
+        <textarea id="composeBody" placeholder="Write your message…"></textarea>
+        <div class="compose-footer">
+          <div id="composeError" class="error-msg hidden"></div>
+          <button class="btn-primary" onclick="sendEmail()">Send ✈</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/storage.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/mail.js"></script>
+  <script src="../js/app.js"></script>
+</body>
+</html>

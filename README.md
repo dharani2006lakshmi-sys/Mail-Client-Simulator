@@ -1,10 +1,20 @@
-<div align="center">
+﻿<div align="center">
 
 # ✉️ MiniMail
 
 ![MiniMail Live Demo](https://raw.githubusercontent.com/dharani2006lakshmi-sys/Mail-Client-Simulator/main/screenshot.png)
 
 [**🔗 View Live Demo on Vercel**](https://minigmaildemo.vercel.app/)
+
+<br/>
+
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JAVASCRIPT](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+
+**A lightweight, zero-backend email client simulator built entirely with vanilla web technologies.**
+
+</div>
 
 ## 🚀 Features Overview
 
@@ -17,17 +27,9 @@
 
 ---
 
-## 💻 Tech Stack
-
-- **Frontend**: HTML5, CSS3, Vanilla JavaScript (ES6+)
-- **Storage Engine**: Browser `window.localStorage`
-- **Architecture**: Modular JS (`auth.js`, `mail.js`, `storage.js`, `app.js`)
-
----
-
 ## 📂 Project Structure
 
-```text
+`	ext
 mini-gmail/
 ├── index.html        # Authentication page & Inbox UI
 ├── style.css         # Global styles and UI components
@@ -35,7 +37,7 @@ mini-gmail/
 ├── auth.js           # Authentication and session logic
 ├── mail.js           # Email handling and DOM rendering
 └── app.js            # Core application initialization
-```
+`
 
 ---
 
@@ -44,13 +46,13 @@ mini-gmail/
 Because MiniMail is fully client-side, you don't need any complex build tools or backend servers to run it!
 
 1. **Clone the repository:**
-   ```bash
+   `ash
    git clone https://github.com/dharani2006lakshmi-sys/Mail-Client-Simulator.git
    cd Mail-Client-Simulator
-   ```
+   `
 
 2. **Run Locally:**
-   Simply open `index.html` in your favorite web browser! 
+   Simply open index.html in your favorite web browser! 
    *(Optionally, you can use VS Code Live Server for hot reloading).*
 
 ---
@@ -58,4 +60,3 @@ Because MiniMail is fully client-side, you don't need any complex build tools or
 ## 📜 License
 
 MIT License - Free to use, modify, and learn from!
-</div>

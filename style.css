@@ -1,5 +1,5 @@
-/* ===========================
-   MINI MAIL – GLOBAL STYLES
+﻿/* ===========================
+   MINI MAIL â€“ GLOBAL STYLES
    =========================== */
 
 :root {
@@ -581,3 +581,9 @@ button { cursor: pointer; border: none; font-family: inherit; }
     width: 100%;
   }
 }
+
+
+/* Added Page Toggling */
+.page { display: none; }
+.page.active { display: block; }
+

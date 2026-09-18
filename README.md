@@ -12,6 +12,10 @@ A lightweight, purely client-side email client simulation that provides an incre
 
 ---
 
+![MiniMail Live Demo](https://raw.githubusercontent.com/dharani2006lakshmi-sys/mini-gmail/main/screenshot.png)
+
+[**🔗 View Live Demo on Vercel**](https://minigmaildemo.vercel.app/)
+
 ## 🚀 Features Overview
 
 | Feature | Description |
@@ -65,3 +69,4 @@ Because MiniMail is fully client-side, you don't need any complex build tools or
 ## 📜 License
 
 MIT License - Free to use, modify, and learn from!
+

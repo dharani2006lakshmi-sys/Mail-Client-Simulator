@@ -20,14 +20,14 @@
 ## 💻 Tech Stack
 
 - **Frontend**: HTML5, CSS3, Vanilla JavaScript (ES6+)
-- **Storage Engine**: Browser window.localStorage
-- **Architecture**: Modular JS (uth.js, mail.js, storage.js, pp.js)
+- **Storage Engine**: Browser `window.localStorage`
+- **Architecture**: Modular JS (`auth.js`, `mail.js`, `storage.js`, `app.js`)
 
 ---
 
 ## 📂 Project Structure
 
-`	ext
+```text
 mini-gmail/
 ├── index.html        # Authentication page & Inbox UI
 ├── style.css         # Global styles and UI components
@@ -35,7 +35,7 @@ mini-gmail/
 ├── auth.js           # Authentication and session logic
 ├── mail.js           # Email handling and DOM rendering
 └── app.js            # Core application initialization
-`
+```
 
 ---
 
@@ -44,13 +44,13 @@ mini-gmail/
 Because MiniMail is fully client-side, you don't need any complex build tools or backend servers to run it!
 
 1. **Clone the repository:**
-   `ash
+   ```bash
    git clone https://github.com/dharani2006lakshmi-sys/Mail-Client-Simulator.git
    cd Mail-Client-Simulator
-   `
+   ```
 
 2. **Run Locally:**
-   Simply open index.html in your favorite web browser! 
+   Simply open `index.html` in your favorite web browser! 
    *(Optionally, you can use VS Code Live Server for hot reloading).*
 
 ---

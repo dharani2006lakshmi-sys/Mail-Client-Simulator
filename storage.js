@@ -30,20 +30,32 @@ const Storage = (() => {
   const saveUsers = (u) => localStorage.setItem(USERS_KEY, JSON.stringify(u));
 
   const createUser = (name, email, password) => {
+    const cleanEmail = String(email || '').trim().toLowerCase();
     const users = getUsers();
-    if (users.find(u => u.email === email)) {
+    if (users.find(u => u.email === cleanEmail)) {
       return { error: 'An account with this email already exists.' };
     }
-    const user = { id: uuid(), name, email, password };
+    const user = { id: uuid(), name: name || cleanEmail.split('@')[0], email: cleanEmail, password: password || '' };
     users.push(user);
     saveUsers(users);
     _seedWelcomeEmail(user);
     return { user };
   };
 
-  const findUser = (email, password) => {
+  const ensureDemoUser = (email, password, name) => {
+    const cleanEmail = String(email || 'guest@minimail.com').trim().toLowerCase();
     const users = getUsers();
-    const user = users.find(u => u.email === email && u.password === password);
+    let user = users.find(u => u.email === cleanEmail);
+    if (!user) {
+      return createUser(name || cleanEmail.split('@')[0], cleanEmail, password || '').user;
+    }
+    return user;
+  };
+
+  const findUser = (email, password) => {
+    const cleanEmail = String(email || '').trim().toLowerCase();
+    const users = getUsers();
+    const user = users.find(u => u.email === cleanEmail && u.password === password);
     if (!user) return { error: 'Invalid email or password.' };
     return { user };
   };
@@ -62,43 +74,52 @@ const Storage = (() => {
   const getAllEmails = () => JSON.parse(localStorage.getItem(EMAILS_KEY) || '[]');
   const saveEmails = (emails) => localStorage.setItem(EMAILS_KEY, JSON.stringify(emails));
 
-  const sendEmail = ({ fromId, fromName, fromEmail, toEmail, subject, body }) => {
+  const sendEmail = ({ fromId, fromName, fromEmail, toEmail, subject, body, draft = false }) => {
     const users = getUsers();
-    const recipient = users.find(u => u.email === toEmail);
+    const cleanTo = String(toEmail || '').trim().toLowerCase();
+    const recipient = users.find(u => u.email === cleanTo);
 
     const email = {
       id:        uuid(),
       fromId,
       fromName,
       fromEmail,
-      toEmail,
+      toEmail:   cleanTo,
       subject:   subject || '(no subject)',
       body:      body || '',
       date:      now(),
-      read:      false,
+      read:      draft,
       starred:   false,
       trashed:   false,
+      draft:     !!draft,
     };
 
     const emails = getAllEmails();
     emails.push(email);
     saveEmails(emails);
 
-    return { success: true, delivered: !!recipient };
+    return { success: true, delivered: !!recipient, email };
   };
 
   const getInbox = (userId) => {
     const user = getUsers().find(u => u.id === userId);
     if (!user) return [];
     return getAllEmails()
-      .filter(e => e.toEmail === user.email && !e.trashed)
+      .filter(e => e.toEmail === user.email && !e.trashed && !e.draft)
       .sort((a, b) => new Date(b.date) - new Date(a.date))
       .map(e => ({ ...e, dateFormatted: formatDate(e.date) }));
   };
 
   const getSent = (userId) => {
     return getAllEmails()
-      .filter(e => e.fromId === userId && !e.trashed)
+      .filter(e => e.fromId === userId && !e.trashed && !e.draft)
+      .sort((a, b) => new Date(b.date) - new Date(a.date))
+      .map(e => ({ ...e, dateFormatted: formatDate(e.date) }));
+  };
+
+  const getDrafts = (userId) => {
+    return getAllEmails()
+      .filter(e => e.fromId === userId && e.draft && !e.trashed)
       .sort((a, b) => new Date(b.date) - new Date(a.date))
       .map(e => ({ ...e, dateFormatted: formatDate(e.date) }));
   };
@@ -107,7 +128,7 @@ const Storage = (() => {
     const user = getUsers().find(u => u.id === userId);
     if (!user) return [];
     return getAllEmails()
-      .filter(e => e.starred && !e.trashed &&
+      .filter(e => e.starred && !e.trashed && !e.draft &&
         (e.toEmail === user.email || e.fromId === userId))
       .sort((a, b) => new Date(b.date) - new Date(a.date))
       .map(e => ({ ...e, dateFormatted: formatDate(e.date) }));
@@ -123,10 +144,10 @@ const Storage = (() => {
       .map(e => ({ ...e, dateFormatted: formatDate(e.date) }));
   };
 
-  const markRead = (emailId) => {
+  const markRead = (emailId, readState = true) => {
     const emails = getAllEmails();
     const e = emails.find(m => m.id === emailId);
-    if (e) { e.read = true; saveEmails(emails); }
+    if (e) { e.read = readState; saveEmails(emails); }
   };
 
   const toggleStar = (emailId) => {
@@ -145,7 +166,7 @@ const Storage = (() => {
   const getUnreadCount = (userId) => {
     const user = getUsers().find(u => u.id === userId);
     if (!user) return 0;
-    return getAllEmails().filter(e => e.toEmail === user.email && !e.read && !e.trashed).length;
+    return getAllEmails().filter(e => e.toEmail === user.email && !e.read && !e.trashed && !e.draft).length;
   };
 
   // ---- SEED ----
@@ -165,19 +186,44 @@ Here's what you can do:
   • Compose and send emails to other MiniMail users
   • Star important messages
   • Search your inbox
-  • Manage sent, starred, and trash folders
+  • Manage sent, drafts, starred, and trash folders
 
 Get started by composing your first message!
 
 – The MiniMail Team`,
     });
+    sendEmail({
+      fromId:    'system_tips',
+      fromName:  'Product Updates',
+      fromEmail: 'updates@minimail.app',
+      toEmail:   user.email,
+      subject:   'Quick Tips: Shortcuts & Compose Tools',
+      body: `Hi ${user.name},\n\nClick any email to read, reply, star, or move it to Trash. Use the Search bar at the top or Settings (gear icon) to switch Dark/Light mode and Accent colors.`,
+    });
+    sendEmail({
+      fromId:    'system_security',
+      fromName:  'Security Alert',
+      fromEmail: 'security@minimail.app',
+      toEmail:   user.email,
+      subject:   'Demo Session Active',
+      body: `Hi ${user.name},\n\nYour MiniMail demo workspace is active and synced locally in your browser's LocalStorage.`,
+    });
+    sendEmail({
+      fromId:    user.id,
+      fromName:  user.name,
+      fromEmail: user.email,
+      toEmail:   'team@minimail.app',
+      subject:   'Project Standup Notes (Draft)',
+      body:      'Agenda for today:\n1. Inbox UI review\n2. Demo login verification',
+      draft:     true,
+    });
   };
 
   return {
-    createUser, findUser,
+    createUser, findUser, ensureDemoUser, getUsers,
     setSession, getSession, clearSession,
     sendEmail,
-    getInbox, getSent, getStarred, getTrash,
+    getInbox, getSent, getDrafts, getStarred, getTrash,
     markRead, toggleStar, trashEmail,
     getUnreadCount,
     formatDate,
